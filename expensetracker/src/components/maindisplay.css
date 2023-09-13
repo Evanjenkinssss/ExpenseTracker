@@ -1,5 +1,10 @@
-.maindisplaycontent{
-
+.maindisplaycontent {
     background-color: aquamarine;
-    
-}
+    height: 65vh;
+    width: 50vw; /* Change width to 50vw to take up half of the screen width */
+    border-radius: 3%;
+    position: absolute;
+    bottom: 2%;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for half of the element's width */
+  }
