@@ -1,0 +1,44 @@
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  /* Style the heading within the header */
+  header h1 {
+    margin: 0;
+    font-size: 2rem;
+  }
+
+.headercontent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style the menu */
+.menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+  
+/* Style the menu items */
+.menu li {
+    margin-right: 8rem; /* Add margin to the right side of each menu item */
+    /* You can adjust the value (1rem) to control the spacing */
+}
+
+/* Style the menu links */
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hover effect for menu items */
+.menu a:hover {
+    color: black;
+}
