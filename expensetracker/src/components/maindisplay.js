@@ -19,7 +19,7 @@ function Maindisplay() {
     labels: UserData.map((data) => data.year),
     datasets: [
       {
-        label: "Users Gained",
+        label: "£ Spent",
         data: UserData.map((data) => data.userGain),
         backgroundColor: [
           "rgba(75,192,192,1)",
