@@ -1,3 +1,11 @@
+h1 {
+    text-align: center;
+}
+
+
+/* Main Graph Content */
+
+
 .maindisplaycontent {
     background-color: aquamarine;
     height: 65vh;
@@ -8,3 +16,56 @@
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Adjust for half of the element's width */
   }
+
+
+
+/* Transactions Content */
+
+.transactions{
+    height:70%;
+    margin: 5%;
+    padding: 5%;
+    border: 5px;
+    border-color: black;
+    background-color: aliceblue;
+}
+
+.transactionsdiv{
+    background-color: rgb(255, 0, 0);
+    height: 85vh;
+    width: 20vw; /* Change width to 50vw to take up half of the screen width */
+    border-radius: 3%;
+    position: absolute;
+    bottom: 2%;
+    right: 2%; /* Center horizontally */
+}
+
+.buttondiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newButton{
+    padding: 12px 28px;
+    margin-right:5%;
+
+    margin: 0;
+    
+
+}
+
+
+/* Nav Display */
+
+.navdisplaycontent{
+    background-color: rgb(255, 0, 0);
+    height: 85vh;
+    width: 20vw; /* Change width to 50vw to take up half of the screen width */
+    border-radius: 3%;
+    position: absolute;
+    bottom: 2%;
+    left: 2%; /* Center horizontally */
+}
+
+

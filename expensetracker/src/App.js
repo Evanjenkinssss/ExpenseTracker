@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './components/header';
 import Maindisplay from './components/maindisplay';
-import Transactions from './components/transactionsdisplay';
 
 
 
@@ -16,7 +15,6 @@ function App() {
     <div>
       <Header /> 
       <Maindisplay /> 
-      <Transactions /> 
 
 
     </div>
