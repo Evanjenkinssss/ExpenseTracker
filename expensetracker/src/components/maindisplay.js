@@ -6,17 +6,30 @@ import { UserData } from "./data";
 import LineChart from "./Mainlinechart";
 import { useState } from "react";
 
+import TransactionForm from './transactionform';
+
 
 
 
 
 function Maindisplay() {
 
+  
+
+  const [showForm, setShowForm] = useState(false);
+
+  const handleFormToggle = () => {
+    setShowForm(!showForm);
+  }
+
+
+
+
 
 
 
   const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
+    labels: UserData.map((data) => data.month),
     datasets: [
       {
         label: "£ Spent",
@@ -38,6 +51,7 @@ function Maindisplay() {
     
     <body>
 
+        {showForm && <TransactionForm onClose={handleFormToggle} />}
 
         {/* Graph Display */}
 
@@ -76,7 +90,7 @@ function Maindisplay() {
         </div>
         <div class="buttondiv">
         
-        <button class="newButton">Add New</button>
+        <button onClick={handleFormToggle}class="newButton">Add New</button>
         </div>
         </div>
     </body>
