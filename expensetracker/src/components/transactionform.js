@@ -21,14 +21,23 @@ const TransactionForm = ({ onClose }) => {
             
             <form onSubmit={handleSubmit}>
               {/* Your form fields */}
-              <div class="row">
+            <div class="row">
                 <label>
                     Date
                 </label>
                 <div class="input">
                 <input type="date" name="date" value={formData.date}/>
                 </div>
-              </div>
+            </div>
+
+            <div class="row">
+                <label>
+                    Company
+                </label>
+                <div class="input">
+                <input type="text" name="company" value={formData.company}/>
+                </div>
+            </div>
               
             <div class="row">
                 <label>
@@ -67,7 +76,7 @@ const TransactionForm = ({ onClose }) => {
               {/* Add more form fields as needed */}
               <div class="buttons">
                 <button className="close-button" onClick={onClose}>Close</button>
-                <button type="submit">Submit</button>
+                <button class="submit-button" type="submit">Submit</button>
               </div>
               
             </form>
