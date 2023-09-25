@@ -14,3 +14,19 @@ then connect using
 
 mongosh
 
+
+
+
+run react app
+
+npm install
+
+npm start
+
+
+
+run backend server 
+
+npm install node server.js
+
+

@@ -4,7 +4,7 @@ import './maindisplay.css';
 
 import { UserData } from "./data";
 import LineChart from "./Mainlinechart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import TransactionForm from './transactionform';
 
@@ -14,7 +14,8 @@ import TransactionForm from './transactionform';
 
 function Maindisplay() {
 
-  
+  const [transactions, setTransactions] = useState([]); // State to hold fetched transactions
+
 
   const [showForm, setShowForm] = useState(false);
 
@@ -22,7 +23,24 @@ function Maindisplay() {
     setShowForm(!showForm);
   }
 
+  // Define a function to fetch transactions
+  async function fetchTransactions() {
+    try {
+      const response = await fetch('/api/transactions'); // Use the appropriate URL for your server
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setTransactions(data);
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    }
+  }
 
+  // Use useEffect to fetch data when the component mounts
+  useEffect(() => {
+    fetchTransactions();
+  }, []);
 
 
 
@@ -55,14 +73,14 @@ function Maindisplay() {
 
         {/* Graph Display */}
 
-        <div class="maindisplaycontent">
+        <div className="maindisplaycontent">
 
             <p> Testing </p>
             <LineChart chartData={userData} />
         </div>
 
         {/* Nav Display */}
-        <div class="navdisplaycontent">
+        <div className="navdisplaycontent">
 
         <ul className='navDisplay'>
             <li>
@@ -83,19 +101,32 @@ function Maindisplay() {
 
         {/* Transactions Display */}
 
-        <div class="transactionsdiv">
+        <div className="transactionsdiv">
         <h1> Transactions </h1>
-        <div class="transactions">
-        <p>transaction1</p>
+        <div className="transactions">
+        {transactions.map((transaction, index) => (
+            <div key={index} className="transaction-item">
+              <p>Company: {transaction.company}</p>
+              <p>Amount: {transaction.amount}</p>
+            </div>
+            
+          ))}
         </div>
-        <div class="buttondiv">
+        <div className="buttondiv">
         
-        <button onClick={handleFormToggle}class="newButton">Add New</button>
+        <button onClick={handleFormToggle}className="newButton">Add New</button>
         </div>
         </div>
     </body>
     
   );
 }
+
+//
+
+
+
+
+//
 
 export default Maindisplay;

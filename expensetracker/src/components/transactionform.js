@@ -21,38 +21,38 @@ const TransactionForm = ({ onClose }) => {
             
             <form onSubmit={handleSubmit}>
               {/* Your form fields */}
-            <div class="row">
+            <div className="row">
                 <label>
                     Date
                 </label>
-                <div class="input">
+                <div className="input">
                 <input type="date" name="date" value={formData.date}/>
                 </div>
             </div>
 
-            <div class="row">
+            <div className="row">
                 <label>
                     Company
                 </label>
-                <div class="input">
+                <div className="input">
                 <input type="text" name="company" value={formData.company}/>
                 </div>
             </div>
               
-            <div class="row">
+            <div className="row">
                 <label>
                     Description
                 </label>
-                <div class="input">
+                <div className="input">
                 <input type="text" name="description" value={formData.description}/>
                 </div>
             </div>
             
-            <div class="row">
+            <div className="row">
                 <label>
                     Category
                 </label>
-                <div class="input">
+                <div className="input">
                 <select name="category" value={formData.category}>
                     <option value="">Select Category</option>
                     <option value="Food">Food</option>
@@ -64,17 +64,17 @@ const TransactionForm = ({ onClose }) => {
                 
             </div>
             
-            <div class="row">
+            <div className="row">
                 <label>
                     Amount
                 </label>
-                <div class="input">
+                <div className="input">
                 <input type="number" name="amount" value={formData.amount}/>
                 </div> 
             </div>
             
               {/* Add more form fields as needed */}
-              <div class="buttons">
+              <div className="buttons">
                 <button className="close-button" onClick={onClose}>Close</button>
                 <button class="submit-button" type="submit">Submit</button>
               </div>
