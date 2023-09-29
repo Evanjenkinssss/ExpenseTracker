@@ -2,10 +2,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Transaction = require('./models/transaction');
+const cors = require('cors'); // Import the cors package
 
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+
+
 
 // Connect to your MongoDB database
 mongoose.connect('mongodb://localhost:27017/ExpenseTrackerDB', {
@@ -23,21 +26,39 @@ mongoose.connect('mongodb://localhost:27017/ExpenseTrackerDB', {
 // Example: app.use('/api/users', require('./routes/users'));
 
 
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with the actual URL of your React app
+}));
 
-
+app.get('/', (req, res) => {
+  res.send('Welcome to the Expense Tracker API');
+});
 
 // Define an API route to retrieve all transactions
 app.get('/api/transactions', async (req, res) => {
+    console.log('initiated get');
     try {
+      console.log('initiated try');
       // Fetch all transactions from the database
       const transactions = await Transaction.find();
-  
+      console.log('Fetched transactions:', transactions);
+
+      // Set the Content-Type header to indicate JSON response
+      res.setHeader('Content-Type', 'application/json');
+      console.log('Response headers before sending:', res.getHeaders());
+
       // Send the transactions as a JSON response
       res.json(transactions);
+
     } catch (error) {
       console.error('Error fetching transactions:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+  });
+
+  app.get('/api/test', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ message: 'Test JSON response' });
   });
 
 

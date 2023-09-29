@@ -12,6 +12,7 @@ import TransactionForm from './transactionform';
 
 
 
+
 function Maindisplay() {
 
   const [transactions, setTransactions] = useState([]); // State to hold fetched transactions
@@ -26,14 +27,21 @@ function Maindisplay() {
   // Define a function to fetch transactions
   async function fetchTransactions() {
     try {
-      const response = await fetch('/api/transactions'); // Use the appropriate URL for your server
+      console.log('Fetching transactions...'); // Log when the request is initiated
+      const response = await fetch('http://localhost:5001/api/transactions'); // Replace with the correct server URL
+      console.log('Response Content-Type:', response.headers.get('Content-Type'));
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+      console.log('Response received with status:', response.status); // Log the response status
+
       const data = await response.json();
+      console.log('Data received:', data); // Log the received data
       setTransactions(data);
+      console.log('Transactions set successfully.'); // Log when the data is set
+
     } catch (error) {
-      console.error('Error fetching transactions:', error);
+      console.error('Error! fetching transactions:', error);
     }
   }
 
