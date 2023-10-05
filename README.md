@@ -15,7 +15,7 @@ then connect using
 mongosh
 
 
-
+i
 
 run react app
 
@@ -29,4 +29,4 @@ run backend server
 
 npm install node server.js
 
-
+node server.js

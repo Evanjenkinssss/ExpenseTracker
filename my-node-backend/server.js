@@ -62,7 +62,29 @@ app.get('/api/transactions', async (req, res) => {
   });
 
 
+///
 
+
+
+// Define an API route to create a new transaction
+app.post('/api/transactions', async (req, res) => {
+  try {
+    // Get the transaction data from the request body
+    const transactionData = req.body;
+
+    // Create a new Transaction document based on the data
+    const newTransaction = new Transaction(transactionData);
+
+    // Save the new transaction to the database
+    await newTransaction.save();
+
+    // Send a success response
+    res.status(201).json({ message: 'Transaction saved successfully' });
+  } catch (error) {
+    console.error('Error creating transaction:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 ////

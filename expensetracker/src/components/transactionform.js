@@ -5,13 +5,43 @@ import './transactionform.css';
 
 const TransactionForm = ({ onClose }) => {
     const [formData, setFormData] = useState({
-      // Initialize your form fields here
+      date: '',
+      company: '',
+      description: '',
+      category: '',
+      amount: 0,
     });
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      // Handle form submission logic here
-      // You can also send data to a parent component using props
+      try {
+        const response = await fetch('http://localhost:5001/api/transactions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+  
+        if (response.ok) {
+          // Handle success (e.g., show a success message)
+          console.log('Transaction submitted successfully');
+          onClose(); // Close the form or perform any other necessary action
+        } else {
+          // Handle error (e.g., show an error message)
+          console.error('Transaction submission failed');
+        }
+      } catch (error) {
+        console.error('Error submitting transaction:', error);
+      }
+    };
+
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
     };
 
 
@@ -26,7 +56,7 @@ const TransactionForm = ({ onClose }) => {
                     Date
                 </label>
                 <div className="input">
-                <input type="date" name="date" value={formData.date}/>
+                <input type="date" name="date" value={formData.date} onChange={handleInputChange}/>
                 </div>
             </div>
 
@@ -35,7 +65,7 @@ const TransactionForm = ({ onClose }) => {
                     Company
                 </label>
                 <div className="input">
-                <input type="text" name="company" value={formData.company}/>
+                <input type="text" name="company" value={formData.company} onChange={handleInputChange}/>
                 </div>
             </div>
               
@@ -44,7 +74,7 @@ const TransactionForm = ({ onClose }) => {
                     Description
                 </label>
                 <div className="input">
-                <input type="text" name="description" value={formData.description}/>
+                <input type="text" name="description" value={formData.description} onChange={handleInputChange}/>
                 </div>
             </div>
             
@@ -53,7 +83,7 @@ const TransactionForm = ({ onClose }) => {
                     Category
                 </label>
                 <div className="input">
-                <select name="category" value={formData.category}>
+                <select name="category" value={formData.category} onChange={handleInputChange}>
                     <option value="">Select Category</option>
                     <option value="Food">Food</option>
                     <option value="Transportation">Transportation</option>
@@ -69,7 +99,7 @@ const TransactionForm = ({ onClose }) => {
                     Amount
                 </label>
                 <div className="input">
-                <input type="number" name="amount" value={formData.amount}/>
+                <input type="decimal" name="amount" value={formData.amount} onChange={handleInputChange}/>
                 </div> 
             </div>
             
