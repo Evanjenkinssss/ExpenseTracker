@@ -15,6 +15,7 @@ const TransactionForm = ({ onClose }) => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+        console.log('Form Data:', formData);
         const response = await fetch('http://localhost:5001/api/transactions', {
           method: 'POST',
           headers: {

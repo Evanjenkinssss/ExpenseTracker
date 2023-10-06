@@ -64,11 +64,12 @@ app.get('/api/transactions', async (req, res) => {
 
 ///
 
-
+app.use(express.json()); // Middleware to parse JSON requests
 
 // Define an API route to create a new transaction
 app.post('/api/transactions', async (req, res) => {
   try {
+    console.log('Received transaction data:', transactionData);
     // Get the transaction data from the request body
     const transactionData = req.body;
 
@@ -77,7 +78,7 @@ app.post('/api/transactions', async (req, res) => {
 
     // Save the new transaction to the database
     await newTransaction.save();
-
+    console.log('Transaction saved successfully');
     // Send a success response
     res.status(201).json({ message: 'Transaction saved successfully' });
   } catch (error) {
