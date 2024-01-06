@@ -69,9 +69,10 @@ app.use(express.json()); // Middleware to parse JSON requests
 // Define an API route to create a new transaction
 app.post('/api/transactions', async (req, res) => {
   try {
-    console.log('Received transaction data:', transactionData);
     // Get the transaction data from the request body
     const transactionData = req.body;
+    console.log('Received transaction data:', transactionData);
+
 
     // Create a new Transaction document based on the data
     const newTransaction = new Transaction(transactionData);
@@ -87,6 +88,24 @@ app.post('/api/transactions', async (req, res) => {
   }
 });
 
+app.get('/api/transactions/summary', async (req, res) => {
+  try {
+    const summary = await Transaction.aggregate([
+      {
+        $group: {
+          _id: { $month: "$date" }, // Group by month
+          totalAmount: { $sum: "$amount" } // Sum the amounts
+        }
+      },
+      {
+        $sort: { _id: 1 } // Optional: sort by month
+      }
+    ]);
+    res.json(summary);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 ////
 

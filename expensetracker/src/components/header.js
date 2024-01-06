@@ -8,20 +8,7 @@ function Header() {
     <header className='headercontent'>
       <h1>Expense Tracker</h1>
       <div>
-        <ul className='menu'>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-        </ul>
+        
       </div>
     </header>
     

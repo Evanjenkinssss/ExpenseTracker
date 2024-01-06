@@ -7,7 +7,7 @@ h1 {
 
 
 .maindisplaycontent {
-    background-color: aquamarine;
+    background-color: rgb(210, 219, 244);
     height: 65vh;
     width: 50vw; /* Change width to 50vw to take up half of the screen width */
     border-radius: 3%;
@@ -16,6 +16,9 @@ h1 {
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Adjust for half of the element's width */
   }
+.graphtitle {
+    text-align: center;
+}
 
 
 
@@ -28,10 +31,18 @@ h1 {
     border: 5px;
     border-color: black;
     background-color: aliceblue;
+    overflow-y: auto;
+
 }
 
+.transaction-item {
+    border: 1px solid #cccccc; /* Light grey border, adjust color as needed */
+    word-wrap: break-word; /* To handle long words or sentences */
+    margin-bottom: 10px; /* To create space between items */
+  }
+
 .transactionsdiv{
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(210, 219, 244);
     height: 85vh;
     width: 20vw; /* Change width to 50vw to take up half of the screen width */
     border-radius: 3%;
@@ -59,7 +70,7 @@ h1 {
 /* Nav Display */
 
 .navdisplaycontent{
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(210, 219, 244);
     height: 85vh;
     width: 20vw; /* Change width to 50vw to take up half of the screen width */
     border-radius: 3%;

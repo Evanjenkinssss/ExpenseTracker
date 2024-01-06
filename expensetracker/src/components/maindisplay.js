@@ -45,12 +45,49 @@ function Maindisplay() {
     }
   }
 
+  async function fetchTransactionSummary() {
+    try {
+      const response = await fetch('http://localhost:5001/api/transactions/summary');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const summaryData = await response.json();
+      processSummaryData(summaryData);
+    } catch (error) {
+      console.error('Error fetching transaction summary:', error);
+      // Handle errors
+    }
+  }
+
+  function processSummaryData(summaryData) {
+    const chartData = {
+      labels: summaryData.map(item => getMonthName(item._id)),
+      datasets: [
+        {
+          label: "£ Spent",
+          data: summaryData.map(item => item.totalAmount),
+          backgroundColor: "rgba(75,192,192,1)",
+          borderColor: "black",
+          borderWidth: 2,
+        }
+      ]
+    };
+    setUserData(chartData);
+  }
+
+  function getMonthName(monthNumber) {
+    const date = new Date();
+    date.setMonth(monthNumber - 1);
+    return date.toLocaleString('default', { month: 'long' });
+  }
+
   // Use useEffect to fetch data when the component mounts
   useEffect(() => {
     fetchTransactions();
+    fetchTransactionSummary();
   }, []);
 
 
+  
+  
 
 
 
@@ -83,27 +120,14 @@ function Maindisplay() {
 
         <div className="maindisplaycontent">
 
-            <p> Testing </p>
+            <p class="graphtitle"> Monthly £ Spent </p>
             <LineChart chartData={userData} />
         </div>
 
         {/* Nav Display */}
         <div className="navdisplaycontent">
 
-        <ul className='navDisplay'>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-            <li>
-                <a href="#">Test</a>
-            </li>
-        </ul>
+        
 
         </div>
 
